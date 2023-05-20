@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="row" *ngIf="brands.length > 0 && categories.length > 0">
+        <section class="col-2">
+
+            <h5 class="text-warning ms-3">Sort</h5>
+            <select class="form-select mb-4" (change)="onSortSelected($event)">
+                <option *ngFor="let option of sortOptions" [value]="option.value">{{option.name}}</option>
+            </select>
+            <h5 class="text-warning ms-3">Brands</h5>
+            <ul class="list-group my-3" style="cursor: pointer;">
+                <li class="list-group-item" *ngFor="let brand of brands" [class.active]="brand.id === shopParams.brandId"
+                    [value]="brand.id" (click)="onBrandSelected(brand.id)">{{brand.name}}</li>
+            </ul>
+            <h5 class="text-warning ms-3">Categories</h5>
+            <ul class="list-group my-3" style="cursor: pointer;">
+                <li class="list-group-item" *ngFor="let category of categories"
+                    [class.active]="category.id === shopParams.categoryId" [value]="category.id"
+                    (click)="onCategorySelected(category.id)">{{category.name}}</li>
+            </ul>
+        </section>
+        <section class="col-8">
+            
+            <div class="d-flex justify-content-between align-items-center pb-2">
+                <app-paging-header
+                [totalNumber]="totalNumber"
+                [pageNumber]="shopParams.pageNumber"
+                [pageSize]="shopParams.pageSize"
+            ></app-paging-header>
+                <div class="d-flex mt-2">
+                    <input type="text" placeholder="Search" (keyup.enter)="onSearch()" class="form-control me-2" #search>
+                    <button class="btn btn-outline-primary mx-2" (click)="onSearch()"><i class="fa fa-search d-inline" style="font-size: 1.2em;"></i></button>
+                    <button class="btn btn-outline-success" (click)="onReset()">Reset</button>
+                </div>
+            </div>
+            <div class="row row-cols-3 g-3" *ngIf="totalNumber !== 0">
+                <div class="col" *ngFor="let product of products">
+                    <app-product-item [product]="product"></app-product-item>
+                </div>
+            </div>
+            <div class="row text-center p-5" *ngIf="totalNumber === 0">
+                <span>There is no products for selected Category and Brand.</span>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+                <app-pager
+                    [totalNumber]="totalNumber"
+                    [pageSize]="shopParams.pageSize"
+                    (pageChanged)="onPageChanged($event)"
+                ></app-pager>
+            </div>
+        </section>
+    </div>
+</div>

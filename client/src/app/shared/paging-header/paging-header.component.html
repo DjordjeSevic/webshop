@@ -1,0 +1,10 @@
+<header>
+    <span *ngIf="totalNumber && pageNumber && pageSize">Showing 
+        <strong>
+            {{pageNumber*pageSize - pageSize + 1}}
+        </strong> - 
+        <strong >
+            {{pageNumber*pageSize > totalNumber ? totalNumber : pageNumber*pageSize}}
+        </strong> 
+        of <strong>{{totalNumber}}</strong> Results</span>
+</header>
