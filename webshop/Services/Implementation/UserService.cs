@@ -73,6 +73,8 @@ namespace Services.Implementation
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Role = role
             };
         }
@@ -93,6 +95,8 @@ namespace Services.Implementation
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Role = role
             };
         }
@@ -118,6 +122,8 @@ namespace Services.Implementation
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
                 Role = "Customer"
             };
         }

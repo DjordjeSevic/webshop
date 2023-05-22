@@ -77,7 +77,7 @@ namespace Presentation.Controllers
         {
             var exists = await _serviceManager.UserService.CheckEmailExists(registerDto.Email);
 
-            if (exists) return BadRequest(new ApiValidationErrorResponse { Errors = new[] { "Emmail address is in use" }, StatusCode=400});
+            if (exists) return BadRequest(new ApiValidationErrorResponse { Errors = new[] { "Email address is in use" }, StatusCode=400});
 
             var user = await _serviceManager.UserService.Register(registerDto);
 
