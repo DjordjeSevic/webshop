@@ -35,6 +35,8 @@ namespace Services.Implementation
         {
             var user = await _userManager.Users.Include(x => x.Address).SingleOrDefaultAsync(x => x.Email == email);
 
+            if (user.Address == null) return null;
+
             return new AddressDto
             {
                 State = user.Address.State,
@@ -46,15 +48,23 @@ namespace Services.Implementation
 
         public async Task<AddressDto> UpdateUserAddress(string email, AddressDto addressDto)
         {
-            var user = await _userManager.FindByEmailAsync(email);
+            var user = await _userManager.Users.Include(u => u.Address).SingleAsync(u => u.Email == email);
 
-            user.Address = new Address
+            if (user.Address == null)
             {
-                State = addressDto.State,
-                Street = addressDto.Street,
-                City = addressDto.City,
-                ZipCode = addressDto.ZipCode
-            };
+                user.Address = new Address()
+                {
+                    State = addressDto.State,
+                    Street = addressDto.Street,
+                    City = addressDto.City,
+                    ZipCode = addressDto.ZipCode
+                };
+            } else {
+                user.Address.State = addressDto.State;
+                user.Address.Street = addressDto.Street;
+                user.Address.City = addressDto.City;
+                user.Address.ZipCode = addressDto.ZipCode;
+            }
 
             var result = await _userManager.UpdateAsync(user);
 

@@ -18,6 +18,7 @@ namespace Persistence.Data.Config
             builder.Property(p => p.Description).IsRequired().HasMaxLength(180);
             builder.Property(p => p.Price).HasColumnType("decimal(18,2)");
             builder.Property(p => p.ImageUrl).IsRequired();
+            builder.Property(p => p.Count).IsRequired().HasDefaultValue(10);
             builder.HasOne(b => b.Brand).WithMany()
                 .HasForeignKey(p => p.BrandId);
             builder.HasOne(c => c.Category).WithMany()

@@ -14,7 +14,6 @@ export class TextInputComponent implements ControlValueAccessor {
     this.controlDir.valueAccessor = this;
   }
   writeValue(obj: any): void {
-    throw new Error('Method not implemented.');
   }
   registerOnChange(fn: any): void {
   }

@@ -28,6 +28,7 @@ export class ProductDetailsComponent implements OnInit {
     if (id) this.shopService.getProduct(id).subscribe({
       next: product => {
         this.product = product;
+        console.log(product.imageUrl);
         this.bcService.set('@productDetails', product.name);
         this.basketService.basketSource$.pipe(take(1)).subscribe({
           next: basket => {

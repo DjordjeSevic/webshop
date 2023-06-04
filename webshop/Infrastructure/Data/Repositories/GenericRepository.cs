@@ -2,6 +2,7 @@
 using Domain.Repositories;
 using Domain.Specifications;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Persistence.Data.Specifications;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,12 @@ namespace Persistence.Data.Repositories
         public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
+        }
+
+        public async Task<int> Add(T Entity)
+        {
+            await _context.AddAsync(Entity);
+            return await _context.SaveChangesAsync();
         }
 
 
@@ -49,6 +56,12 @@ namespace Persistence.Data.Repositories
         private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);  
-        }       
+        }
+
+        public async Task<int> Update(T Entity)
+        {
+            _context.Update(Entity);
+            return await _context.SaveChangesAsync();
+        }
     }
 }

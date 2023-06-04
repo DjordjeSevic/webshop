@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.Entities
 {
@@ -14,5 +15,7 @@ namespace Domain.Entities
         public Brand Brand { get; set; }
         [ForeignKey("Brand")]
         public Guid BrandId { get; set; }
+        [Range(0, 100)]
+        public int Count { get; set; } = 10;
     }
 }

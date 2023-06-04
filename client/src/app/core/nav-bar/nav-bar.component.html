@@ -6,7 +6,10 @@
             [routerLinkActiveOptions]="{exact: true}"
         >Home</a>
         <a class="p-2" routerLink="/shop" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Shop</a>
-        <a class="p-2" routerLink="/test-error" routerLinkActive="active">Errors</a>
+        <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+            <a *ngIf="user.role === 'Customer'" class="p-2" routerLink="/orders" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Orders</a>
+            <a *ngIf="user.role === 'Admin'" class="p-2" routerLink="/orders/getAllOrders" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Orders</a>
+        </ng-container>
     </nav>
     <div class="d-flex align-items-center">
         <a routerLink="/basket" class="position-relative">
@@ -30,8 +33,13 @@
                             <i class="fa fa-shopping-cart me-3"></i> View basket
                         </a>
                     </li>
-                    <li class="py-1">
-                        <a routerLink="/basket" class="dropdown-item">
+                    <li class="py-1" *ngIf="user.role === 'Customer'">
+                        <a routerLink="/orders" class="dropdown-item">
+                            <i class="fa fa-history me-3"></i> View orders
+                        </a>
+                    </li>
+                    <li class="py-1" *ngIf="user.role === 'Admin'">
+                        <a routerLink="/orders/getAllOrders" class="dropdown-item">
                             <i class="fa fa-history me-3"></i> View orders
                         </a>
                     </li>

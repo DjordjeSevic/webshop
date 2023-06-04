@@ -6,5 +6,6 @@ export interface Product {
     imageUrl: string
     category: string
     brand: string
+    count: number
 }
   

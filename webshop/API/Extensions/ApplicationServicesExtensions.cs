@@ -4,6 +4,7 @@ using Persistence.Data;
 using Contracts.Dtos.Errors;
 using StackExchange.Redis;
 using Microsoft.AspNetCore.Http.Connections;
+using Persistence.Data.Triggers;
 
 namespace API.Extensions
 {
@@ -27,9 +28,13 @@ namespace API.Extensions
                  return ConnectionMultiplexer.Connect(options);
             });
 
-            services.AddDbContextPool<StoreContext>(options =>
+            services.AddDbContext<StoreContext>(options =>
             {
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
+                options.UseTriggers(triggerOptions =>
+                {
+                    triggerOptions.AddTrigger<DecreaseProductCount>();
+                });
             });
 
             services.AddAutoMapper(Services.AssemblyReference.Assembly);

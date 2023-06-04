@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Entities.OrderAggregate;
 
 namespace Persistence.Data
 {
@@ -26,11 +27,18 @@ namespace Persistence.Data
                 context.Categories.AddRange(categories);
             }
 
-            if (!context.Brands.Any())
+            if (!context.Products.Any())
             {
                 var productsRaw = File.ReadAllText("../Infrastructure/Data/SeedData/products.json");
                 var products = JsonSerializer.Deserialize<List<Product>>(productsRaw);
                 context.Products.AddRange(products);
+            }
+
+            if (!context.DeliveryMethods.Any())
+            {
+                var deliveryRaw = File.ReadAllText("../Infrastructure/Data/SeedData/delivery.json");
+                var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryRaw);
+                context.DeliveryMethods.AddRange(deliveryMethods);
             }
 
             if (context.ChangeTracker.HasChanges()) await context.SaveChangesAsync();

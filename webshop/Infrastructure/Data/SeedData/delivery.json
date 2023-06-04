@@ -1,0 +1,30 @@
+[
+  {
+    "Id": "6334786b-7d12-4620-8404-86af42b6ee9f",
+    "ShortName": "UPS1",
+    "Description": "Fastest delivery time",
+    "DeliveryTime": "1-2 Days",
+    "Price": 10
+  },
+  {
+    "Id": "8dbdb10c-0a54-4543-be1a-8d8a5e31fddd",
+    "ShortName": "UPS2",
+    "Description": "Get it within 5 days",
+    "DeliveryTime": "2-5 Days",
+    "Price": 5
+  },
+  {
+    "Id": "e14f7d62-9898-4495-986c-002dc38a236b",
+    "ShortName": "UPS3",
+    "Description": "Slower but cheap",
+    "DeliveryTime": "5-10 Days",
+    "Price": 2
+  },
+  {
+    "Id": "2dea49c7-5679-4a13-8b05-416a055a2be0",
+    "ShortName": "FREE",
+    "Description": "Free! You get what you pay for",
+    "DeliveryTime": "1-2 Weeks",
+    "Price": 0
+  }
+]

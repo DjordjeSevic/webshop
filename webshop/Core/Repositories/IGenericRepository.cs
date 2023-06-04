@@ -11,6 +11,8 @@ namespace Domain.Repositories
     public interface IGenericRepository<T> where T : BaseEntity
     {
         Task<T> GetByIdAsync(Guid id);
+        Task<int> Add(T Entity);
+        Task<int> Update(T Entity);
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> GetEntityWithSpec(ISpecification<T> spec);
         Task<IEnumerable<T>> GetAsync(ISpecification<T> spec);

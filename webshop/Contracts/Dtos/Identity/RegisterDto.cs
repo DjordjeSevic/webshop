@@ -19,7 +19,7 @@ namespace Contracts.Dtos.Identity
         [Required]
         public string LastName { get; set; }
         [Required]
-        [RegularExpression("(?i)^(?=[a-z])(?=.*[0-9])([a-z0-9!@#$%\\^&*()_?+\\-=]){6,15}$",
+        [RegularExpression("(?=^.{6,10}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\\s).*$",
             ErrorMessage = "Password must have 1 uppercase, 1 lowercase, 1 number, 1 non alphanumeric and at least 6 character")]
         public string Password { get; set; }
     }

@@ -14,5 +14,7 @@ namespace Services.Abstractions
         IRedisService RedisService { get; }
         IUserService UserService { get; }
         ITokenService TokenService { get; }
+        IOrderService OrderService { get; }
+        IPaymentService PaymentService { get; }
     }
 }
